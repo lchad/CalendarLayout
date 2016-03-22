@@ -1,9 +1,5 @@
 package com.example.liuchad.customcalendar.model;
 
-/**
- * Created by liuchad on 16/3/21.
- */
-
 //  Created by liuchad on 16/3/21.
 public class ScheduleVo {
 

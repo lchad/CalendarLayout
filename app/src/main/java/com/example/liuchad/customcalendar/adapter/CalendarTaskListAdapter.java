@@ -55,7 +55,6 @@ public class CalendarTaskListAdapter extends BaseAdapter {
 
     class ViewHolder {
         TextView tvTime;
-
     }
 }
 
