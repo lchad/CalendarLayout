@@ -4,13 +4,7 @@ package com.example.liuchad.customcalendar.model;
  * Created by liuchad on 16/3/21.
  */
 
-    import android.os.Parcel;
-    import android.os.Parcelable;
-
-/**
- * 日程事项类
- * Created by Yetwish on 2015/7/28.
- */
+//  Created by liuchad on 16/3/21.
 public class ScheduleVo {
 
     public long id; //事项ID
