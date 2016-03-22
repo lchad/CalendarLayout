@@ -4,15 +4,13 @@ package com.example.liuchad.customcalendar.widget;
  * Created by liuchad on 16/3/21.
  */
 
-import android.view.View;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-
+import android.view.View;
 import com.example.liuchad.customcalendar.R;
 import com.example.liuchad.customcalendar.model.ScheduleVo;
 import java.util.Calendar;

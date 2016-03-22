@@ -5,12 +5,10 @@ package com.example.liuchad.customcalendar.widget;
  */
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-
-import com.example.liuchad.customcalendar.model.CalendarWeek;
 import com.example.liuchad.customcalendar.R;
+import com.example.liuchad.customcalendar.model.CalendarWeek;
 import com.example.liuchad.customcalendar.model.ScheduleVo;
 import java.util.Calendar;
 import java.util.HashMap;

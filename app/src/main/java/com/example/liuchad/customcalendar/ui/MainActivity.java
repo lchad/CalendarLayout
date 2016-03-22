@@ -1,6 +1,5 @@
 package com.example.liuchad.customcalendar.ui;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -9,7 +8,6 @@ import com.example.liuchad.customcalendar.R;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
-
 
     private CalendarFragment fragment;
 

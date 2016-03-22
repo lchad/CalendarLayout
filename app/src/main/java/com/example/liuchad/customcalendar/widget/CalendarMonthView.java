@@ -4,19 +4,18 @@ package com.example.liuchad.customcalendar.widget;
  * Created by liuchad on 16/3/21.
  */
 
-    import android.content.Context;
-    import android.graphics.Color;
-    import android.graphics.Paint;
-    import android.util.AttributeSet;
-
-    import com.example.liuchad.customcalendar.R;
-    import com.example.liuchad.customcalendar.model.CalendarMonth;
-    import com.example.liuchad.customcalendar.util.DateUtil;
-    import com.example.liuchad.customcalendar.model.ScheduleVo;
-    import java.util.Calendar;
-    import java.util.HashMap;
-    import java.util.List;
-    import java.util.Map;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.util.AttributeSet;
+import com.example.liuchad.customcalendar.R;
+import com.example.liuchad.customcalendar.model.CalendarMonth;
+import com.example.liuchad.customcalendar.model.ScheduleVo;
+import com.example.liuchad.customcalendar.util.DateUtil;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CalendarMonthView extends CalendarBaseView {
 
@@ -83,8 +82,6 @@ public class CalendarMonthView extends CalendarBaseView {
 
     /**
      * 设置当前选中的天数
-     *
-     * @param calendar
      */
     public void setSelectedDayByCal(Calendar calendar) {
         mCurrentSelected = mCal.weekFirst + calendar.get(Calendar.DAY_OF_MONTH);
@@ -106,7 +103,6 @@ public class CalendarMonthView extends CalendarBaseView {
         if (mCalendarCLickListener != null) {
             mCalendarCLickListener.onCalendarClick(calendar);
         }
-
     }
 
     @Override
@@ -123,16 +119,15 @@ public class CalendarMonthView extends CalendarBaseView {
                 mCalendarCLickListener.onCalendarClick(calendar);
             } else {
                 if (mPageChangeListener != null) {
-                    if (position <= 6)
+                    if (position <= 6) {
                         mPageChangeListener.onPageChange(OnPageChangeListener.PAGE_UP, calendar);
-                    else
+                    } else {
                         mPageChangeListener.onPageChange(OnPageChangeListener.PAGE_DOWN, calendar);
+                    }
                 }
-
             }
         }
     }
-
 
     protected int getPosition(float x, float y) {
         int row = (int) (y / mCellHeight);
@@ -163,7 +158,9 @@ public class CalendarMonthView extends CalendarBaseView {
                 drawCircle(position, 2, grayDotColor);
             } else if (typeMap.get(key) == TYPE_NORMAL) {
                 drawCircle(position, 1, grayDotColor);
-            } else drawCircle(position, 1, redDotColor);
+            } else {
+                drawCircle(position, 1, redDotColor);
+            }
         }
     }
 
@@ -175,12 +172,15 @@ public class CalendarMonthView extends CalendarBaseView {
         Paint.FontMetricsInt fontMetrics = mFontPaint.getFontMetricsInt();
 
         //        if(todayX == 0){
-        //            todayX = (int) (mCellWidth * (today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst - 1) % 7 + (mCellWidth - fontWidth) / 2);
-        //            todayY = mCellHeight * (today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst - 1) / 7 + mMarginTop + (fontMetrics.bottom - fontMetrics.top) / 2 + mFontPadding * 2;
+        //            todayX = (int) (mCellWidth * (today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst - 1) % 7 + (mCellWidth -
+        // fontWidth) / 2);
+        //            todayY = mCellHeight * (today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst - 1) / 7 + mMarginTop +
+        // (fontMetrics.bottom - fontMetrics.top) / 2 + mFontPadding * 2;
         //
         //        }
 
-        if (DateUtil.isValidTime(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), mCal.startTime, mCal.endTime)) {
+        if (DateUtil.isValidTime(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), mCal.startTime,
+            mCal.endTime)) {
             mFontPaint.setColor(inFontColor);
         } else {
             mFontPaint.setColor(outFontColor);
@@ -204,14 +204,16 @@ public class CalendarMonthView extends CalendarBaseView {
         if (mCurrentSelected == position) {
             drawSelectedDay(offsetX, offsetY, cal.get(Calendar.DAY_OF_MONTH));
         } else {
-            if (position != today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst || mCal.month != today.get(Calendar.MONTH))
+            if (position != today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst || mCal.month != today.get(Calendar.MONTH)) {
                 mCanvas.drawText(text, offsetX, offsetY - mCellHeight / 7, mFontPaint);
+            }
         }
-
     }
 
     private void drawToday() {
-        if ((mCurrentSelected != today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst && mCal.month == today.get(Calendar.MONTH) && mCal.year == today.get(Calendar.YEAR))) {
+        if ((mCurrentSelected != today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst
+            && mCal.month == today.get(Calendar.MONTH)
+            && mCal.year == today.get(Calendar.YEAR))) {
             mFontPaint.setColor(todayFontColor);
             mCanvas.drawText(today.get(Calendar.DAY_OF_MONTH) + "", todayX, todayY - mCellHeight / 7, mFontPaint);
         }
@@ -227,7 +229,9 @@ public class CalendarMonthView extends CalendarBaseView {
         mFontPaint.setColor(choseFontColor);
         mCanvas.drawCircle(mCenterX, mCenterY - mCellHeight / 7, mStrokeWidth / 2, mStrokePaint);
         mCanvas.drawText(day + "", offsetX, offsetY - mCellHeight / 7, mFontPaint);
-        if (mCurrentSelected != today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst && mCal.month == today.get(Calendar.MONTH) && mCal.year == today.get(Calendar.YEAR)) {
+        if (mCurrentSelected != today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst
+            && mCal.month == today.get(Calendar.MONTH)
+            && mCal.year == today.get(Calendar.YEAR)) {
             drawToday();
         }
     }
@@ -263,15 +267,15 @@ public class CalendarMonthView extends CalendarBaseView {
             if (typeMap.containsKey(day)) {
                 if (typeMap.get(day) == TYPE_BOTH) continue;
                 int priority = scheduleList.get(i).priority;
-                if (priority == 0 && typeMap.get(day) == TYPE_ADVANCED || priority == 1 && typeMap.get(day) == TYPE_NORMAL)
+                if (priority == 0 && typeMap.get(day) == TYPE_ADVANCED || priority == 1 && typeMap.get(day) == TYPE_NORMAL) {
                     typeMap.put(day, TYPE_BOTH);
+                }
             } else {
                 typeMap.put(day, scheduleList.get(i).priority);
             }
         }
         invalidate();
     }
-
 
     public interface OnPageChangeListener {
 
@@ -280,5 +284,4 @@ public class CalendarMonthView extends CalendarBaseView {
 
         void onPageChange(int upOrDown, Calendar cal);
     }
-
 }
