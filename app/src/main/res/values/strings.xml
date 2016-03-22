@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="app_name">CustomCalendar</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="yestoday">昨天</string>
+    <string name="week_head">周</string>
+    <string name="loading">loading</string>
+
+    <string name="no_schedule">Empty</string>
+
+</resources>

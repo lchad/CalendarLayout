@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="separator_content">#cecece</color>
+    <color name="item_color">#a8a8a8</color>
+    <color name="line_color">#cecece</color>
+    <color name="rect_paint_color">#f2f2f2</color>
+    <color name="out_font_color">#bcbcbc</color>
+    <color name="stroke_color">#222222</color>
+    <color name="chosen_font_color">#fbfbfb</color>
+    <color name="white_dot_color">#fbfbfc</color>
+    <color name="gray_dot_color">#c5c2c2</color>
+    <color name="circle_color">#a8a8a8</color>
+    <color name="gray_text_color">#727272</color>
+
+    <color name="theme_blue">#1e88e5</color>
+
+    <color name="schedule_time_mor">#1b7ace</color>
+    <color name="schedule_time_aft">#1e88e5</color>
+    <color name="schedule_time_eve">#64b5f6</color>
+</resources>

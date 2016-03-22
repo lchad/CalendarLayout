@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CalendarTimeView">
+        <attr format="dimension" name="startX"/>
+        <attr format="dimension" name="startY"/>
+        <attr format="dimension" name="view_height"/>
+    </declare-styleable>
+
+</resources>
