@@ -51,10 +51,6 @@ public class CalendarMoveLayout extends ViewGroup {
     private static final int STATE_DOWN = 2;
     private int mCurrentState = STATE_DOWN;
 
-    public void setCouldDragDown(boolean couldDrag) {
-        mCouldDragDown = couldDrag;
-    }
-
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             mScroller.computeScrollOffset();
@@ -76,7 +72,6 @@ public class CalendarMoveLayout extends ViewGroup {
             }
             if (!mScroller.isFinished()) {
                 handler.sendEmptyMessage(msg.what);
-            } else {
             }
         }
     };
@@ -166,7 +161,7 @@ public class CalendarMoveLayout extends ViewGroup {
                 int distance = deltaY * deltaY;
                 if (distance > mTouchSlopSquare) {
                     if (delayY < 0) {
-                        setCouldDragDown(true);
+                        mCouldDragDown = true;
                         //向上
                         step = delayY;
                         if (mBaseTop + firstChildHeight == listTaskTopMargin) {
@@ -193,12 +188,12 @@ public class CalendarMoveLayout extends ViewGroup {
                             if (child == null || child.getTop() >= 0) {
                                 step = delayY;
                                 if (mBaseTop == 0) {
-                                    setCouldDragDown(false);
+                                    mCouldDragDown = false;
                                     //刚好下面
                                     parentScroll = false;
                                     return false;
                                 } else if (mBaseTop + step > listTaskTopMargin) {
-                                    setCouldDragDown(false);
+                                    mCouldDragDown = false;
                                     //过了一点
                                     parentScroll = true;
                                     mBaseTop = listTaskTopMargin;
