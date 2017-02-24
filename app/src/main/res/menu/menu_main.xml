@@ -7,6 +7,9 @@
         android:icon="@drawable/nav_ic_zhou"
         app:showAsAction="always" />
 
-
+    <item android:id="@+id/action_today"
+          android:title="今天"
+          android:orderInCategory="80"
+          app:showAsAction="always" />
 
 </menu>
