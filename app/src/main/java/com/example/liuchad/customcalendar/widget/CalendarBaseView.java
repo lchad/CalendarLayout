@@ -6,13 +6,14 @@ package com.example.liuchad.customcalendar.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
 import com.example.liuchad.customcalendar.R;
 import com.example.liuchad.customcalendar.model.ScheduleVo;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -100,12 +101,12 @@ public abstract class CalendarBaseView extends View {
         mDotMargin = getResources().getDimension(R.dimen.calendar_dot_margin);
 
         inFontColor = getResources().getColor(R.color.stroke_color);
-        choseFontColor = Color.parseColor("#fbfbfb");
-        todayFontColor = getResources().getColor(R.color.theme_blue);
-        whiteDotColor = Color.parseColor("#fbfbfc");
+        choseFontColor = getResources().getColor(R.color.chosen_font_color);
+        todayFontColor = getResources().getColor(R.color.theme_pink);
+        whiteDotColor = getResources().getColor(R.color.white_dot_color);
         grayTextColor = getResources().getColor(R.color.gray_text_color);
-        redDotColor = getResources().getColor(R.color.theme_blue);
-        grayDotColor = Color.parseColor("#c5c2c2");
+        redDotColor = getResources().getColor(R.color.theme_pink);
+        grayDotColor = getResources().getColor(R.color.gray_dot_color);
 
         mFontPaint = new Paint();
         mFontPaint.setColor(inFontColor);
@@ -117,7 +118,7 @@ public abstract class CalendarBaseView extends View {
         mCirclePaint.setStrokeWidth(getResources().getDimensionPixelSize(R.dimen.calendar_circle_width));
 
         mStrokePaint = new Paint();
-        mStrokePaint.setColor(Color.parseColor("#2789e4"));
+        mStrokePaint.setColor(getResources().getColor(R.color.stroke_circle_color));
         mStrokePaint.setAntiAlias(true);
         mStrokePaint.setStyle(Paint.Style.FILL);
         mStrokePaint.setStrokeWidth(mStrokeWidth);

@@ -64,8 +64,8 @@ public class CalendarMonthView extends CalendarBaseView {
     }
 
     private void init() {
-        typeMap = new HashMap<Integer, Integer>(31);
-        outFontColor = Color.parseColor("#bcbcbc");
+        typeMap = new HashMap<>(31);
+        outFontColor = getResources().getColor(R.color.out_font_color);
     }
 
     public CalendarMonth getCal() {
@@ -170,14 +170,6 @@ public class CalendarMonthView extends CalendarBaseView {
     private void drawDateText(int x, int y, Calendar cal, int position) {
 
         Paint.FontMetricsInt fontMetrics = mFontPaint.getFontMetricsInt();
-
-        //        if(todayX == 0){
-        //            todayX = (int) (mCellWidth * (today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst - 1) % 7 + (mCellWidth -
-        // fontWidth) / 2);
-        //            todayY = mCellHeight * (today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst - 1) / 7 + mMarginTop +
-        // (fontMetrics.bottom - fontMetrics.top) / 2 + mFontPadding * 2;
-        //
-        //        }
 
         if (DateUtil.isValidTime(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), mCal.startTime,
             mCal.endTime)) {

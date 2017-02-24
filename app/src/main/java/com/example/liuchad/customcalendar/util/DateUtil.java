@@ -35,18 +35,12 @@ public class DateUtil {
 
     final public static boolean isInTheDay(long time, Calendar cal) {
         long[] dayTime = calToDayTime(cal);
-        if (time >= dayTime[0] && time <= dayTime[1]) {
-            return true;
-        }
-        return false;
+        return time >= dayTime[0] && time <= dayTime[1];
     }
 
     public static boolean isValidTime(int year, int month, int day, long startTime, long endTime) {
         Calendar calendar = Calendar.getInstance(Locale.getDefault());
         calendar.set(year, month, day);
-        if (calendar.getTimeInMillis() > startTime && calendar.getTimeInMillis() < endTime) {
-            return true;
-        }
-        return false;
+        return calendar.getTimeInMillis() > startTime && calendar.getTimeInMillis() < endTime;
     }
 }

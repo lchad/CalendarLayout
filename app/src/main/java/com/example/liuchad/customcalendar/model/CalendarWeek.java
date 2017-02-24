@@ -47,7 +47,7 @@ public class CalendarWeek {
     /**
      * 记录本周所有天数的日期
      */
-    public List<Integer> dates = new ArrayList<Integer>(DAYS);
+    public List<Integer> dates = new ArrayList<>(DAYS);
 
     public CalendarWeek(Calendar calendar) {
         //获取第一天的年、月、日 和星期数

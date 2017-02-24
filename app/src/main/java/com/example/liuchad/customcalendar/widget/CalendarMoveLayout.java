@@ -5,6 +5,7 @@ package com.example.liuchad.customcalendar.widget;
  */
 
 import android.content.Context;
+import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -14,19 +15,16 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Scroller;
-import com.badoo.mobile.util.WeakHandler;
+
 import com.example.liuchad.customcalendar.R;
 import com.example.liuchad.customcalendar.adapter.CalendarWeekAdapter;
 
-/**
- * @author zxl
- */
 public class CalendarMoveLayout extends ViewGroup {
     /**
      * 滚动的时间(ms)
      */
     private static final int ANIMATION_DURATION = 500;
-    private static final int JUSTY = 200;
+    private static final int JUSTIFY = 200;
     /**
      * 滚动的起始纵坐标
      */
@@ -57,7 +55,7 @@ public class CalendarMoveLayout extends ViewGroup {
         mCouldDragDown = couldDrag;
     }
 
-    WeakHandler handler = new WeakHandler() {
+    Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             mScroller.computeScrollOffset();
             int cY = mScroller.getCurrY();
@@ -152,7 +150,7 @@ public class CalendarMoveLayout extends ViewGroup {
                 mStartScrollY = y;
                 mCurrentDownY = y;
                 downHere = true;
-                handler.removeMessages(JUSTY);
+                handler.removeMessages(JUSTIFY);
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (vpCalendar.getAdapter() instanceof CalendarWeekAdapter) {
@@ -226,6 +224,7 @@ public class CalendarMoveLayout extends ViewGroup {
         return false;
     }
 
+
     private boolean tryJustify() {
         if (vpCalendar.getAdapter() instanceof CalendarWeekAdapter) {
             listTaskTopMargin = (int) getResources().getDimension(R.dimen.calendar_week_top_margin);
@@ -268,7 +267,7 @@ public class CalendarMoveLayout extends ViewGroup {
                 mCurrentState = STATE_DOWN;
             }
             mScroller.startScroll(0, mStartScrollY, 0, dy, ANIMATION_DURATION);
-            handler.sendEmptyMessage(JUSTY);
+            handler.sendEmptyMessage(JUSTIFY);
             return true;
         }
     }
@@ -276,7 +275,7 @@ public class CalendarMoveLayout extends ViewGroup {
     public void scroll(int y, int dy) {
         mCurrentState = STATE_DOWN;
         mScroller.startScroll(0, y, 0, dy, ANIMATION_DURATION);
-        handler.sendEmptyMessage(JUSTY);
+        handler.sendEmptyMessage(JUSTIFY);
     }
 
     public int getBaseTop() {

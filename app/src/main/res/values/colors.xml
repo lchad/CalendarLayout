@@ -12,10 +12,12 @@
     <color name="gray_dot_color">#c5c2c2</color>
     <color name="circle_color">#a8a8a8</color>
     <color name="gray_text_color">#727272</color>
+    <color name="stroke_circle_color">#2789e4</color>
 
-    <color name="theme_blue">#1e88e5</color>
+    <color name="theme_pink">#f76c6f</color>
+    <color name="header_text">#9a9a9a</color>
 
-    <color name="schedule_time_mor">#1b7ace</color>
-    <color name="schedule_time_aft">#1e88e5</color>
-    <color name="schedule_time_eve">#64b5f6</color>
+    <color name="schedule_time_mor">#fa565a</color>
+    <color name="schedule_time_aft">#fb7175</color>
+    <color name="schedule_time_eve">#ff9497</color>
 </resources>

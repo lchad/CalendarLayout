@@ -6,13 +6,13 @@ package com.example.liuchad.customcalendar.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
+
 import com.example.liuchad.customcalendar.BaseApplication;
-import com.example.liuchad.customcalendar.util.CommonUtils;
 import com.example.liuchad.customcalendar.R;
+import com.example.liuchad.customcalendar.util.CommonUtils;
 
 public class CalendarHeaderView extends View {
 
@@ -30,8 +30,7 @@ public class CalendarHeaderView extends View {
         this(context, attrs, 0);
     }
 
-    public CalendarHeaderView(Context context, AttributeSet attrs,
-        int defStyleAttr) {
+    public CalendarHeaderView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -39,10 +38,10 @@ public class CalendarHeaderView extends View {
     private void init() {
         mPaint = new Paint();
         mPaint.setTextSize(getResources().getDimensionPixelSize(
-            R.dimen.calendar_header_text_size));
+                R.dimen.calendar_header_text_size));
         mPaint.setAntiAlias(true);
         weekArray = getResources().getStringArray(R.array.full_week);
-        mPaint.setColor(Color.parseColor("#9a9a9a"));
+        mPaint.setColor(getResources().getColor(R.color.header_text));
         mPaint.setAntiAlias(true);
         mMarginTop = getResources().getDimensionPixelOffset(R.dimen.calendar_month_header_marginTop);
     }
@@ -77,11 +76,9 @@ public class CalendarHeaderView extends View {
 
         for (int i = 0; i < weekArray.length; i++) {
             Paint.FontMetricsInt fontMetrics = mPaint.getFontMetricsInt();
-            int y = (getHeight() - fontMetrics.bottom + fontMetrics.top) / 2
-                - fontMetrics.top - mMarginTop + CommonUtils.dip2px(BaseApplication.getInstance(), 14);
+            int y = (getHeight() - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top - mMarginTop + CommonUtils.dip2px(BaseApplication.getInstance(), 14);
 
-            float x = mMarginLeft + weekTextX * i
-                + (weekTextX - mPaint.measureText(weekArray[i])) / 2f;
+            float x = mMarginLeft + weekTextX * i + (weekTextX - mPaint.measureText(weekArray[i])) / 2f;
             canvas.drawText(weekArray[i], x, y, mPaint);
         }
     }

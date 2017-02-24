@@ -15,17 +15,7 @@ public class BaseApplication extends Application {
         sInstance = this;
     }
 
-    @Override
-    public void onTerminate() {
-        super.onTerminate();
-    }
-
     public static BaseApplication getInstance() {
         return sInstance;
-    }
-
-    @Override
-    public String getPackageName() {
-        return super.getPackageName();
     }
 }

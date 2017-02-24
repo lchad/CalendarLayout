@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
-    <string name="app_name">CustomCalendar</string>
+    <string name="app_name">Calendar View</string>
     <string name="year">年</string>
     <string name="month">月</string>
     <string name="day">日</string>

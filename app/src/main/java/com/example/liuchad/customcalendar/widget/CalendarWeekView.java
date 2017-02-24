@@ -261,7 +261,7 @@ public class CalendarWeekView extends CalendarBaseView {
     private void drawCalLine() {
         mDateHeight = getResources().getDimension(R.dimen.calendar_week_date_height);
         mItemHeight = getResources().getDimension(R.dimen.calendar_week_item_height);
-        for (int i = 0; i < ROWS; i++) {
+        for (int i = 0; i <= ROWS; i++) {
             mCanvas.drawLine(0, mDateHeight + mItemHeight * i, getWidth(), mDateHeight + mItemHeight * i, mHoriLinePaint);
         }
         for (int i = 0; i <= 7; i++) {
@@ -311,7 +311,7 @@ public class CalendarWeekView extends CalendarBaseView {
         if (row == 0) return;
         int column = position % 7;
         if (advance) {
-            mItemTextPaint.setColor(getResources().getColor(R.color.theme_blue));
+            mItemTextPaint.setColor(getResources().getColor(R.color.theme_pink));
         } else {
             mItemTextPaint.setColor(itemColor);
         }
