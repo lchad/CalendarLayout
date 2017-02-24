@@ -1,10 +1,11 @@
-package com.example.liuchad.customcalendar.ui;
+package com.lchad.customcalendar.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.example.liuchad.customcalendar.R;
+
+import com.lchad.customcalendar.R;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();

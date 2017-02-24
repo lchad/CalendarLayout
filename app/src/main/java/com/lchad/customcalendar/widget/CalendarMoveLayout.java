@@ -1,4 +1,4 @@
-package com.example.liuchad.customcalendar.widget;
+package com.lchad.customcalendar.widget;
 
 /**
  * Created by liuchad on 16/3/21.
@@ -16,8 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Scroller;
 
-import com.example.liuchad.customcalendar.R;
-import com.example.liuchad.customcalendar.adapter.CalendarWeekAdapter;
+import com.lchad.customcalendar.R;
+import com.lchad.customcalendar.adapter.CalendarWeekAdapter;
 
 public class CalendarMoveLayout extends ViewGroup {
     /**

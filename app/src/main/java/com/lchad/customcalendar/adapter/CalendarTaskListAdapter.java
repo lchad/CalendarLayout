@@ -1,4 +1,4 @@
-package com.example.liuchad.customcalendar.adapter;
+package com.lchad.customcalendar.adapter;
 
 /**
  * Created by liuchad on 16/3/21.
@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import com.example.liuchad.customcalendar.R;
-import com.example.liuchad.customcalendar.model.ScheduleVo;
+
+import com.lchad.customcalendar.R;
+import com.lchad.customcalendar.model.ScheduleVo;
+
 import java.util.List;
 
 public class CalendarTaskListAdapter extends BaseAdapter {

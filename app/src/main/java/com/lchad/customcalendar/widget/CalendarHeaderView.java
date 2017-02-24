@@ -1,4 +1,4 @@
-package com.example.liuchad.customcalendar.widget;
+package com.lchad.customcalendar.widget;
 
 /**
  * Created by liuchad on 16/3/21.
@@ -10,9 +10,9 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.example.liuchad.customcalendar.BaseApplication;
-import com.example.liuchad.customcalendar.R;
-import com.example.liuchad.customcalendar.util.CommonUtils;
+import com.lchad.customcalendar.BaseApplication;
+import com.lchad.customcalendar.R;
+import com.lchad.customcalendar.util.CommonUtils;
 
 public class CalendarHeaderView extends View {
 

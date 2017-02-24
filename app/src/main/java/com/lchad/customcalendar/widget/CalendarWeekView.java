@@ -1,4 +1,4 @@
-package com.example.liuchad.customcalendar.widget;
+package com.lchad.customcalendar.widget;
 
 /**
  * Created by liuchad on 16/3/21.
@@ -7,9 +7,11 @@ package com.example.liuchad.customcalendar.widget;
 import android.content.Context;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import com.example.liuchad.customcalendar.R;
-import com.example.liuchad.customcalendar.model.CalendarWeek;
-import com.example.liuchad.customcalendar.model.ScheduleVo;
+
+import com.lchad.customcalendar.R;
+import com.lchad.customcalendar.model.CalendarWeek;
+import com.lchad.customcalendar.model.ScheduleVo;
+
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;

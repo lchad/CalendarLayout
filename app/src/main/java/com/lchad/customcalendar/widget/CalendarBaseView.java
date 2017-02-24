@@ -1,4 +1,4 @@
-package com.example.liuchad.customcalendar.widget;
+package com.lchad.customcalendar.widget;
 
 /**
  * Created by liuchad on 16/3/21.
@@ -11,8 +11,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.liuchad.customcalendar.R;
-import com.example.liuchad.customcalendar.model.ScheduleVo;
+import com.lchad.customcalendar.R;
+import com.lchad.customcalendar.model.ScheduleVo;
 
 import java.util.Calendar;
 import java.util.List;

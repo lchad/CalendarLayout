@@ -1,4 +1,4 @@
-package com.example.liuchad.customcalendar.model;
+package com.lchad.customcalendar.model;
 
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -1,4 +1,4 @@
-package com.example.liuchad.customcalendar.model;
+package com.lchad.customcalendar.model;
 
 /**
  * Created by liuchad on 16/3/21.

@@ -1,4 +1,4 @@
-package com.example.liuchad.customcalendar;
+package com.lchad.customcalendar;
 
 import android.app.Application;
 

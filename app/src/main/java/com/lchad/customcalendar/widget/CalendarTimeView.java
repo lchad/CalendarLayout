@@ -1,4 +1,4 @@
-package com.example.liuchad.customcalendar.widget;
+package com.lchad.customcalendar.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,7 +7,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
-import com.example.liuchad.customcalendar.R;
+
+import com.lchad.customcalendar.R;
 
 /**
  * Created by liuchad on 16/3/21.

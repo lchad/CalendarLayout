@@ -1,4 +1,4 @@
-package com.example.liuchad.customcalendar.ui;
+package com.lchad.customcalendar.ui;
 
 /**
  * Created by liuchad on 16/3/21.
@@ -17,21 +17,23 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.example.liuchad.customcalendar.R;
-import com.example.liuchad.customcalendar.adapter.CalendarMonthAdapter;
-import com.example.liuchad.customcalendar.adapter.CalendarTaskListAdapter;
-import com.example.liuchad.customcalendar.adapter.CalendarWeekAdapter;
-import com.example.liuchad.customcalendar.model.CalendarMonth;
-import com.example.liuchad.customcalendar.model.CalendarWeek;
-import com.example.liuchad.customcalendar.model.ScheduleVo;
-import com.example.liuchad.customcalendar.util.CommonUtils;
-import com.example.liuchad.customcalendar.util.DateUtil;
-import com.example.liuchad.customcalendar.widget.CalendarBaseView;
-import com.example.liuchad.customcalendar.widget.CalendarHeaderView;
-import com.example.liuchad.customcalendar.widget.CalendarMonthView;
-import com.example.liuchad.customcalendar.widget.CalendarMoveLayout;
-import com.example.liuchad.customcalendar.widget.CalendarTimeView;
-import com.example.liuchad.customcalendar.widget.CalendarWeekView;
+
+import com.lchad.customcalendar.R;
+import com.lchad.customcalendar.adapter.CalendarMonthAdapter;
+import com.lchad.customcalendar.adapter.CalendarTaskListAdapter;
+import com.lchad.customcalendar.adapter.CalendarWeekAdapter;
+import com.lchad.customcalendar.model.CalendarMonth;
+import com.lchad.customcalendar.model.CalendarWeek;
+import com.lchad.customcalendar.model.ScheduleVo;
+import com.lchad.customcalendar.util.CommonUtils;
+import com.lchad.customcalendar.util.DateUtil;
+import com.lchad.customcalendar.widget.CalendarBaseView;
+import com.lchad.customcalendar.widget.CalendarHeaderView;
+import com.lchad.customcalendar.widget.CalendarMonthView;
+import com.lchad.customcalendar.widget.CalendarMoveLayout;
+import com.lchad.customcalendar.widget.CalendarTimeView;
+import com.lchad.customcalendar.widget.CalendarWeekView;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;

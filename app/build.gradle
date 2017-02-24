@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.example.liuchad.customcalendar"
+        applicationId "com.lchad.customcalendar"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
