@@ -10,5 +10,8 @@
     <string name="loading">loading</string>
 
     <string name="no_schedule">Empty</string>
+    <string name="change_to_month">切换到月视图</string>
+    <string name="change_to_week">切换到周视图</string>
+    <string name="go_back_today">回到今天</string>
 
 </resources>

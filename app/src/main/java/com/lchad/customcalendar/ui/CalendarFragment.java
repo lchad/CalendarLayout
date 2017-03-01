@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lchad.customcalendar.R;
 import com.lchad.customcalendar.adapter.CalendarMonthAdapter;
@@ -321,6 +322,7 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
      * 设置回第一天
      */
     public void setBackToToday() {
+        Toast.makeText(getActivity(), R.string.go_back_today, Toast.LENGTH_SHORT).show();
         if (mCurrentView == VIEW_MONTH) {
             mViewPage.setCurrentItem(mMonthPosition);
             setViewPagerHeight(mMonthAdapter.getHeight(mMonthPosition));
@@ -361,6 +363,7 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
      */
     public void switchMonthAndWeek() {
         if (mCurrentView == VIEW_MONTH) {
+            Toast.makeText(getActivity(), R.string.change_to_week, Toast.LENGTH_SHORT).show();
             //当前是月 切换到周视图
             mCalendarHeader.changeModeToWeek(today.get(Calendar.DAY_OF_WEEK) - 1);
             scheduleTimeView.setVisibility(View.VISIBLE);
@@ -383,6 +386,7 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
                 new Handler().postDelayed(runnable, 200);
             }
         } else {
+            Toast.makeText(getActivity(), R.string.change_to_month, Toast.LENGTH_SHORT).show();
             //当前是周 切换到月视图
             mCalendarHeader.changeModeToMonth();
             scheduleTimeView.setVisibility(View.GONE);
