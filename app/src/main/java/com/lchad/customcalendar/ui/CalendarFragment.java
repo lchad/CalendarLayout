@@ -167,7 +167,6 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
         if (mCache.containsKey(monthTime)) {
             updateScheduleList(mCache.get(monthTime));
             mDataListener.onDataChanged(mCache.get(monthTime), mCurrentPosition);
-        } else {
         }
     }
 
@@ -188,7 +187,6 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
             if (mCrossCache.containsKey(weekTime)) {
                 updateScheduleList(mCrossCache.get(weekTime));
                 mDataListener.onDataChanged(mCrossCache.get(weekTime), mCurrentPosition);
-            } else {
             }
         }
     }

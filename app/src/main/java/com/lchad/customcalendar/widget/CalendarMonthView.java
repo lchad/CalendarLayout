@@ -5,7 +5,6 @@ package com.lchad.customcalendar.widget;
  */
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 
@@ -115,7 +114,7 @@ public class CalendarMonthView extends CalendarBaseView {
             calendar.setTimeInMillis(mCal.firstDayOfCal);
             calendar.add(Calendar.DAY_OF_MONTH, position - 1);
             if (DateUtil.isValidTime(calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), mCal.startTime, mCal.endTime)) {
+                    calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), mCal.startTime, mCal.endTime)) {
                 mCurrentSelected = position;
                 invalidate();
                 mCalendarCLickListener.onCalendarClick(calendar);
@@ -174,7 +173,7 @@ public class CalendarMonthView extends CalendarBaseView {
         Paint.FontMetricsInt fontMetrics = mFontPaint.getFontMetricsInt();
 
         if (DateUtil.isValidTime(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), mCal.startTime,
-            mCal.endTime)) {
+                mCal.endTime)) {
             mFontPaint.setColor(inFontColor);
         } else {
             mFontPaint.setColor(outFontColor);
@@ -189,7 +188,7 @@ public class CalendarMonthView extends CalendarBaseView {
         mCenterY = baseY + mMarginTop - mFontPadding / 2;
 
         if (todayX == 0 && mCal.month == today.get(Calendar.MONTH) &&
-            position == today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst && mCal.year == today.get(Calendar.YEAR)) {
+                position == today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst && mCal.year == today.get(Calendar.YEAR)) {
             todayX = offsetX;
             todayY = offsetY;
             drawToday();
@@ -206,8 +205,8 @@ public class CalendarMonthView extends CalendarBaseView {
 
     private void drawToday() {
         if ((mCurrentSelected != today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst
-            && mCal.month == today.get(Calendar.MONTH)
-            && mCal.year == today.get(Calendar.YEAR))) {
+                && mCal.month == today.get(Calendar.MONTH)
+                && mCal.year == today.get(Calendar.YEAR))) {
             mFontPaint.setColor(todayFontColor);
             mCanvas.drawText(today.get(Calendar.DAY_OF_MONTH) + "", todayX, todayY - mCellHeight / 7, mFontPaint);
         }
@@ -224,8 +223,8 @@ public class CalendarMonthView extends CalendarBaseView {
         mCanvas.drawCircle(mCenterX, mCenterY - mCellHeight / 7, mStrokeWidth / 2, mStrokePaint);
         mCanvas.drawText(day + "", offsetX, offsetY - mCellHeight / 7, mFontPaint);
         if (mCurrentSelected != today.get(Calendar.DAY_OF_MONTH) + mCal.weekFirst
-            && mCal.month == today.get(Calendar.MONTH)
-            && mCal.year == today.get(Calendar.YEAR)) {
+                && mCal.month == today.get(Calendar.MONTH)
+                && mCal.year == today.get(Calendar.YEAR)) {
             drawToday();
         }
     }
