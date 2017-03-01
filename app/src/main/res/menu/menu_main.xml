@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/action_switch"
-        android:title=""
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_switch"
+        android:icon="@drawable/ic_action_autorenew"
         android:orderInCategory="80"
-        android:icon="@drawable/nav_ic_zhou"
-        app:showAsAction="always" />
+        android:title=""
+        app:showAsAction="always"/>
 
-    <item android:id="@+id/action_today"
-          android:title="今天"
-          android:orderInCategory="80"
-          app:showAsAction="always" />
+    <item
+        android:id="@+id/action_today"
+        android:icon="@drawable/ic_action_"
+        android:orderInCategory="80"
+        android:title=""
+        app:showAsAction="always"/>
 
 </menu>

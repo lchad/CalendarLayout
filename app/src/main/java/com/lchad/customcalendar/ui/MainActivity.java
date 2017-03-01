@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.lchad.customcalendar.R;
 
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             fragment.switchMonthAndWeek();
         }
         if (item.getItemId() == R.id.action_today) {
-            Toast.makeText(MainActivity.this, "toady", Toast.LENGTH_SHORT).show();
+            fragment.setBackToToday();
         }
         return super.onOptionsItemSelected(item);
     }
