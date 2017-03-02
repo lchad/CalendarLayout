@@ -70,10 +70,6 @@ public class CalendarMonthView extends CalendarBaseView {
         outFontColor = getResources().getColor(R.color.out_font_color);
     }
 
-    public CalendarMonth getCal() {
-        return mCal;
-    }
-
     public void setCal(CalendarMonth cal) {
         this.mCal = cal;
     }
@@ -97,7 +93,7 @@ public class CalendarMonthView extends CalendarBaseView {
      * 设置选中为第一天
      */
     @Override
-    public void setToDayOne() {
+    public void SelectDayOne() {
         mCurrentSelected = mCal.weekFirst + 1;
         invalidate();
         Calendar calendar = Calendar.getInstance();
@@ -109,26 +105,26 @@ public class CalendarMonthView extends CalendarBaseView {
 
     @Override
     protected void handlerClickEvent(int position) {
-        if (mCal == null) return;
-        if (mCalendarCLickListener != null) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(mCal.firstDayOfCal);
-            calendar.add(Calendar.DAY_OF_MONTH, position - 1);
-            if (DateUtil.isValidTime(calendar.get(Calendar.YEAR),
-                    calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), mCal.startTime, mCal.endTime)) {
-                mCurrentSelected = position;
-                invalidate();
-                mCalendarCLickListener.onCalendarClick(calendar);
-            } else {
-                if (mPageChangeListener != null) {
-                    if (position <= 6) {
-                        mPageChangeListener.onPageChange(OnPageChangeListener.PAGE_UP, calendar);
-                    } else {
-                        mPageChangeListener.onPageChange(OnPageChangeListener.PAGE_DOWN, calendar);
-                    }
+        if (mCal == null || mCalendarCLickListener == null) {
+            return;
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(mCal.firstDayOfCal);
+        calendar.add(Calendar.DAY_OF_MONTH, position - 1);
+        if (DateUtil.isValidTime(calendar, mCal.startTime, mCal.endTime)) {
+            mCurrentSelected = position;
+            invalidate();
+            mCalendarCLickListener.onCalendarClick(calendar);
+        } else {
+            if (mPageChangeListener != null) {
+                if (position <= 6) {
+                    mPageChangeListener.onPageChange(OnPageChangeListener.PAGE_UP, calendar);
+                } else {
+                    mPageChangeListener.onPageChange(OnPageChangeListener.PAGE_DOWN, calendar);
                 }
             }
         }
+
     }
 
     protected int getPosition(float x, float y) {
@@ -173,8 +169,7 @@ public class CalendarMonthView extends CalendarBaseView {
 
         Paint.FontMetricsInt fontMetrics = mFontPaint.getFontMetricsInt();
 
-        if (DateUtil.isValidTime(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), mCal.startTime,
-                mCal.endTime)) {
+        if (DateUtil.isValidTime(cal, mCal.startTime, mCal.endTime)) {
             mFontPaint.setColor(inFontColor);
         } else {
             mFontPaint.setColor(outFontColor);
