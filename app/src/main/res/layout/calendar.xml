@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.lchad.customcalendar.widget.CalendarMoveLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/moveLayout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:focusable="false"
-    android:focusableInTouchMode="false">
+<com.lchad.customcalendar.widget.CalendarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                android:id="@+id/moveLayout"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:background="@color/white"
+                                                android:focusable="false"
+                                                android:focusableInTouchMode="false">
 
     <LinearLayout
         android:id="@+id/first_child"
@@ -126,4 +126,4 @@
 
 
     </LinearLayout>
-</com.lchad.customcalendar.widget.CalendarMoveLayout>
+</com.lchad.customcalendar.widget.CalendarLayout>

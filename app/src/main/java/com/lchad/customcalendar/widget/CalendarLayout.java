@@ -19,7 +19,7 @@ import com.lchad.customcalendar.adapter.CalendarWeekAdapter;
  * Created by liuchad on 16/3/21.
  * Github: https://github.com/lchad
  */
-public class CalendarMoveLayout extends ViewGroup {
+public class CalendarLayout extends ViewGroup {
     /**
      * 滚动的时间(ms)
      */
@@ -50,9 +50,9 @@ public class CalendarMoveLayout extends ViewGroup {
     private static final int STATE_UP = 1;
     private static final int STATE_DOWN = 2;
     private int mCurrentState = STATE_DOWN;
-
-    Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
+    Handler.Callback mCallback = new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
             mScroller.computeScrollOffset();
             int cY = mScroller.getCurrY();
             int delta = cY - mStartScrollY;
@@ -73,10 +73,13 @@ public class CalendarMoveLayout extends ViewGroup {
             if (!mScroller.isFinished()) {
                 handler.sendEmptyMessage(msg.what);
             }
+            return true;
         }
     };
 
-    public CalendarMoveLayout(Context context, AttributeSet attrs) {
+    private Handler handler = new Handler(mCallback);
+
+    public CalendarLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         mScroller = new Scroller(context);
         /**
@@ -275,5 +278,9 @@ public class CalendarMoveLayout extends ViewGroup {
 
     public int getBaseTop() {
         return mBaseTop;
+    }
+
+    public void drop() {
+        handler.removeCallbacksAndMessages(mCallback);
     }
 }

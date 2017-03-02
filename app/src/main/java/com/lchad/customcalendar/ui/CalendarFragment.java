@@ -32,8 +32,8 @@ import com.lchad.customcalendar.util.CommonUtils;
 import com.lchad.customcalendar.util.DateUtil;
 import com.lchad.customcalendar.widget.CalendarBaseView;
 import com.lchad.customcalendar.widget.CalendarHeaderView;
+import com.lchad.customcalendar.widget.CalendarLayout;
 import com.lchad.customcalendar.widget.CalendarMonthView;
-import com.lchad.customcalendar.widget.CalendarMoveLayout;
 import com.lchad.customcalendar.widget.CalendarTimeView;
 import com.lchad.customcalendar.widget.CalendarWeekView;
 
@@ -56,7 +56,7 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
         CalendarWeekView.OnItemClickListener, CalendarMonthView.OnPageChangeListener {
 
     @BindView(R.id.rl_date_detail) RelativeLayout dateContainer;
-    @BindView(R.id.moveLayout) CalendarMoveLayout mMoveLayout;
+    @BindView(R.id.moveLayout) CalendarLayout mCalendarLayout;
     @BindView(R.id.calendar_header) CalendarHeaderView mCalendarHeader;
     @BindView(R.id.calendar_viewpager) ViewPager mViewPager;
     @BindView(R.id.fl_calendar_container) LinearLayout mContainer;
@@ -325,7 +325,7 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
                     y,
                     metaState
             );
-            mMoveLayout.dispatchTouchEvent(motionEventUp);
+            mCalendarLayout.dispatchTouchEvent(motionEventUp);
         }
     };
 
@@ -340,7 +340,6 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
             scheduleTimeView.setVisibility(View.VISIBLE);
             //EventBus.getDefault().post(new EventScheduleMonthOrWeek(EventScheduleMonthOrWeek.MONTH));
             mCurrentView = VIEW_WEEK;
-            //设置viewPager adapter
             mDataListener = mWeekAdapter;
             mViewPager.setAdapter(mWeekAdapter);
             int position = getCalWeekPosition(mCurSelectedCal);
@@ -352,7 +351,7 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
             }
             setViewPagerHeight(mWeekAdapter.getHeight());
             if (!mViewPager.isShown()) {
-                mMoveLayout.scroll(mCalendarHeader.getHeight(),
+                mCalendarLayout.scroll(mCalendarHeader.getHeight(),
                         mMonthAdapter.getHeight(mMonthPosition) + mCalendarHeader.getHeight() * 2);
                 new Handler().postDelayed(runnable, 200);
             }
@@ -377,8 +376,8 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
                 positionToSet = position;
                 mViewPager.setCurrentItem(position);
             }
-            if (mMoveLayout.getBaseTop() != 0) {
-                mMoveLayout.scroll(mCalendarHeader.getHeight(), mWeekAdapter.getHeight()
+            if (mCalendarLayout.getBaseTop() != 0) {
+                mCalendarLayout.scroll(mCalendarHeader.getHeight(), mWeekAdapter.getHeight()
                         + mCalendarHeader.getHeight() * 2);
                 new Handler().postDelayed(runnable, 200);
             }
@@ -414,7 +413,9 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
     private ViewPager.OnPageChangeListener mPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+        }
+        @Override
+        public void onPageScrollStateChanged(int state) {
         }
 
         @Override
@@ -439,20 +440,10 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
                 }
             }
         }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
     };
 
     private String getKey(int year, int month) {
         return year + "-" + String.format("%02d", month + 1);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 
     private List<ScheduleVo> getScheduleList() {
@@ -531,6 +522,14 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
             mCurrentPosition++;
         }
         mMonthAdapter.setViewSelectedDayByCal(mCurrentPosition, calendar);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mCalendarLayout != null) {
+            mCalendarLayout.drop();
+        }
     }
 
     /**
