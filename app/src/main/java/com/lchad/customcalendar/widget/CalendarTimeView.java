@@ -12,8 +12,8 @@ import com.lchad.customcalendar.R;
 
 /**
  * Created by liuchad on 16/3/21.
+ * Github: https://github.com/lchad
  */
-
 public class CalendarTimeView extends View {
 
     private Context mContext;

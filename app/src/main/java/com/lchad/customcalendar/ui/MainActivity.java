@@ -7,6 +7,11 @@ import android.view.MenuItem;
 
 import com.lchad.customcalendar.R;
 
+/**
+ * Created by liuchad on 16/3/21.
+ * Github: https://github.com/lchad
+ */
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 

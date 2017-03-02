@@ -2,9 +2,8 @@ package com.lchad.customcalendar.model;
 
 /**
  * Created by liuchad on 16/3/21.
+ * Github: https://github.com/lchad
  */
-
-import java.util.Calendar;
 
 import java.util.Calendar;
 import java.util.Locale;

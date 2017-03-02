@@ -1,6 +1,9 @@
 package com.lchad.customcalendar.model;
 
-//  Created by liuchad on 16/3/21.
+/**
+ * Created by liuchad on 16/3/21.
+ * Github: https://github.com/lchad
+ */
 public class ScheduleVo {
 
     public long id; //事项ID

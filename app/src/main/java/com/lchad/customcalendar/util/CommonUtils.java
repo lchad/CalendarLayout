@@ -2,6 +2,7 @@ package com.lchad.customcalendar.util;
 
 /**
  * Created by liuchad on 16/3/21.
+ * Github: https://github.com/lchad
  */
 
 import android.app.Activity;

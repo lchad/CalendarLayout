@@ -1,9 +1,5 @@
 package com.lchad.customcalendar.widget;
 
-/**
- * Created by liuchad on 16/3/21.
- */
-
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -19,6 +15,10 @@ import android.widget.Scroller;
 import com.lchad.customcalendar.R;
 import com.lchad.customcalendar.adapter.CalendarWeekAdapter;
 
+/**
+ * Created by liuchad on 16/3/21.
+ * Github: https://github.com/lchad
+ */
 public class CalendarMoveLayout extends ViewGroup {
     /**
      * 滚动的时间(ms)

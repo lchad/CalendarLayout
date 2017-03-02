@@ -18,7 +18,9 @@ import java.util.Map;
 
 /**
  * Created by liuchad on 16/3/21.
+ * Github: https://github.com/lchad
  */
+
 public class CalendarWeekAdapter extends RecyclingPagerAdapter implements CalendarFragment.OnDataChangedListener {
 
     private Context mContext;

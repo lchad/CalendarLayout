@@ -2,8 +2,8 @@ package com.lchad.customcalendar.util;
 
 /**
  * Created by liuchad on 16/3/21.
+ * Github: https://github.com/lchad
  */
-
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -12,11 +12,11 @@ public class DateUtil {
     /**
      * 获取日期的month String
      */
-    final public static String calToMonthStr(Calendar cal) {
+    public static String calToMonthStr(Calendar cal) {
         return cal.get(Calendar.YEAR) + "-" + String.format("%02d", cal.get(Calendar.MONTH) + 1);
     }
 
-    final public static long[] calToDayTime(Calendar cal) {
+    public static long[] calToDayTime(Calendar cal) {
         long time[] = new long[2];
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(cal.getTimeInMillis());
@@ -33,7 +33,7 @@ public class DateUtil {
         return time;
     }
 
-    final public static boolean isInTheDay(long time, Calendar cal) {
+    public static boolean isInTheDay(long time, Calendar cal) {
         long[] dayTime = calToDayTime(cal);
         return time >= dayTime[0] && time <= dayTime[1];
     }

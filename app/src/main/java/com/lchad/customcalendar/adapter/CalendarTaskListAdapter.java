@@ -15,6 +15,11 @@ import com.lchad.customcalendar.model.ScheduleVo;
 
 import java.util.List;
 
+/**
+ * Created by liuchad on 16/3/21.
+ * Github: https://github.com/lchad
+ */
+
 public class CalendarTaskListAdapter extends BaseAdapter {
 
     private Context mContext;

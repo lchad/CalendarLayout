@@ -2,8 +2,10 @@ package com.lchad.customcalendar.ui;
 
 /**
  * Created by liuchad on 16/3/21.
+ * Github: https://github.com/lchad
  */
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,15 +44,31 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * 数据加载方式 用一个数组保存所有的日程对象，当点击某一日期时，从数组中筛选出当天的日期 并显示
  * <p>如果当前页面加载到数据则使用服务器中加载的数据，如果没有 则使用本地数据</br>
  * 从数据库中加载数据  数据库加载的数据不保存到缓存中</p>
  */
 public class CalendarFragment extends Fragment implements CalendarBaseView.OnCalendarClickListener,
-    CalendarWeekView.OnItemClickListener, CalendarMonthView.OnPageChangeListener {
+        CalendarWeekView.OnItemClickListener, CalendarMonthView.OnPageChangeListener {
 
-    private ViewPager mViewPage;
+    @BindView(R.id.rl_date_detail) RelativeLayout dateContainer;
+    @BindView(R.id.moveLayout) CalendarMoveLayout mMoveLayout;
+    @BindView(R.id.calendar_header) CalendarHeaderView mCalendarHeader;
+    @BindView(R.id.calendar_viewpager) ViewPager mViewPager;
+    @BindView(R.id.fl_calendar_container) LinearLayout mContainer;
+    @BindView(R.id.schedule_time_view) CalendarTimeView scheduleTimeView;
+    @BindView(R.id.tvDayText) TextView tvCurrentSelectedDate;
+    @BindView(R.id.tvWeekDay) TextView tvWeekDay;
+    @BindView(R.id.empty) RelativeLayout emptyView;
+
+    /**
+     * 事项列表
+     */
+    @BindView(R.id.lvTask) ListView lvTask;
 
     private CalendarMonthAdapter mMonthAdapter;
     /**
@@ -72,30 +90,10 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
      */
     private int mWeekPosition;
 
-    private TextView tvCurrentSelectedDate;
-    private TextView tvWeekDay;
-
-    private CalendarMoveLayout mMoveLayout;
-
-    private RelativeLayout dateContainer;
-
-    private RelativeLayout emptyView;
-
-    /**
-     * 事项列表
-     */
-    private ListView lvTask;
-
     /**
      * 事项列表adapter
      */
     private CalendarTaskListAdapter mTaskAdapter;
-
-    private CalendarHeaderView mCalendarHeader;
-
-    private LinearLayout mContainer;
-
-    private CalendarTimeView scheduleTimeView;
 
     //常量，表示当前选中的视图  周视图/月视图
     public static final int VIEW_MONTH = 1;
@@ -128,14 +126,6 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
     private OnDataChangedListener mDataListener;
 
     /**
-     * 数据加载完成回调接口
-     */
-    public interface OnDataChangedListener {
-
-        void onDataChanged(List<ScheduleVo> scheduleList, int position);
-    }
-
-    /**
      * 目前选中的日期
      */
     private Calendar mCurSelectedCal;
@@ -150,13 +140,6 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
     private int positionToSet;
 
     private boolean isCross;
-
-    /**
-     * 获取当前选中时间
-     */
-    public Calendar getCurrentSelectedCal() {
-        return mCurSelectedCal;
-    }
 
     /**
      * 获取一个月的数据
@@ -215,8 +198,7 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
             for (int j = Calendar.JANUARY; j <= Calendar.DECEMBER; j++) {
                 CalendarMonth date = new CalendarMonth(i, j);
                 mMonthList.add(date);
-                if (i == calendar.get(Calendar.YEAR)
-                    && j == calendar.get(Calendar.MONTH)) {
+                if (i == calendar.get(Calendar.YEAR) && j == calendar.get(Calendar.MONTH)) {
                     mMonthPosition = mMonthList.size() - 1;
                 }
             }
@@ -235,21 +217,12 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-        Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
+
+        @SuppressLint("InflateParams")
         View view = inflater.inflate(R.layout.calendar, null);
+        ButterKnife.bind(this, view);
 
-        dateContainer = (RelativeLayout) view.findViewById(R.id.rl_date_detail);
-        mMoveLayout = (CalendarMoveLayout) view.findViewById(R.id.moveLayout);
-        mCalendarHeader = (CalendarHeaderView) view.findViewById(R.id.calendar_header);
-        mViewPage = (ViewPager) view.findViewById(R.id.calendar_viewpager);
-        mContainer = (LinearLayout) view.findViewById(R.id.fl_calendar_container);
-        scheduleTimeView = (CalendarTimeView) view.findViewById(R.id.schedule_time_view);
-
-        tvCurrentSelectedDate = (TextView) view.findViewById(R.id.tvDayText);
-        tvWeekDay = (TextView) view.findViewById(R.id.tvWeekDay);
-
-        lvTask = (ListView) view.findViewById(R.id.lvTask);
-        emptyView = (RelativeLayout) view.findViewById(R.id.empty);
         lvTask.setEmptyView(emptyView);
 
         //设置头部
@@ -259,12 +232,12 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
         //初始化viewPager
         mWeekAdapter = new CalendarWeekAdapter(getActivity(), mWeekList, this, this);
         mDataListener = mWeekAdapter;
-        mViewPage.setAdapter(mWeekAdapter);
-        mViewPage.setCurrentItem(mWeekPosition);
+        mViewPager.setAdapter(mWeekAdapter);
+        mViewPager.setCurrentItem(mWeekPosition);
         mCurrentPosition = mWeekPosition;
         mCurrentView = VIEW_WEEK;
         setViewPagerHeight(mWeekAdapter.getHeight());
-        mViewPage.addOnPageChangeListener(mPageChangeListener);
+        mViewPager.addOnPageChangeListener(mPageChangeListener);
 
         setTextByCalendar();
 
@@ -302,20 +275,20 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
         }
 
         tvCurrentSelectedDate.setText(
-            new StringBuilder()
-                .append(mCurSelectedCal.get(Calendar.YEAR))
-                .append(getResources().getString(R.string.year))
-                .append(mCurSelectedCal.get(Calendar.MONTH) + 1)
-                .append(getResources().getString(R.string.month))
-                .append(mCurSelectedCal.get(Calendar.DAY_OF_MONTH))
-                .append(getResources().getString(R.string.day))
-                .toString());
+                new StringBuilder()
+                        .append(mCurSelectedCal.get(Calendar.YEAR))
+                        .append(getResources().getString(R.string.year))
+                        .append(mCurSelectedCal.get(Calendar.MONTH) + 1)
+                        .append(getResources().getString(R.string.month))
+                        .append(mCurSelectedCal.get(Calendar.DAY_OF_MONTH))
+                        .append(getResources().getString(R.string.day))
+                        .toString());
 
         tvWeekDay.setText(
-            new StringBuilder()
-                .append(getResources().getString(R.string.week_head))
-                .append(getResources().getStringArray(R.array.week)[order])
-                .toString());
+                new StringBuilder()
+                        .append(getResources().getString(R.string.week_head))
+                        .append(getResources().getStringArray(R.array.week)[order])
+                        .toString());
     }
 
     /**
@@ -324,11 +297,11 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
     public void setBackToToday() {
         Toast.makeText(getActivity(), R.string.go_back_today, Toast.LENGTH_SHORT).show();
         if (mCurrentView == VIEW_MONTH) {
-            mViewPage.setCurrentItem(mMonthPosition);
+            mViewPager.setCurrentItem(mMonthPosition);
             setViewPagerHeight(mMonthAdapter.getHeight(mMonthPosition));
             mMonthAdapter.setViewSelectedDayByCal(mMonthPosition, today);
         } else {
-            mViewPage.setCurrentItem(mWeekPosition);
+            mViewPager.setCurrentItem(mWeekPosition);
             mWeekAdapter.setViewSelectedDayOne(mWeekPosition);
             setViewPagerHeight(mWeekAdapter.getHeight());
         }
@@ -341,19 +314,17 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
             int[] coordinates = new int[2];
             dateContainer.getLocationOnScreen(coordinates);
             float x = CommonUtils.getScreenWidth(getActivity()) / 2;
-            float y = coordinates[1] - CommonUtils.getStatusHeight(getActivity()) -
-                getResources().getDimension(R.dimen.title_height) + 15;
+            float y = coordinates[1] - CommonUtils.getStatusHeight(getActivity()) - getResources().getDimension(R.dimen.title_height) + 15;
             long downTime = SystemClock.uptimeMillis();
             long eventTime = SystemClock.uptimeMillis() + 100;
             MotionEvent motionEventUp = MotionEvent.obtain(
-                downTime,
-                eventTime,
-                MotionEvent.ACTION_UP,
-                x,
-                y,
-                metaState
+                    downTime,
+                    eventTime,
+                    MotionEvent.ACTION_UP,
+                    x,
+                    y,
+                    metaState
             );
-
             mMoveLayout.dispatchTouchEvent(motionEventUp);
         }
     };
@@ -371,18 +342,18 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
             mCurrentView = VIEW_WEEK;
             //设置viewPager adapter
             mDataListener = mWeekAdapter;
-            mViewPage.setAdapter(mWeekAdapter);
+            mViewPager.setAdapter(mWeekAdapter);
             int position = getCalWeekPosition(mCurSelectedCal);
             if (position != -1) {
                 mWeekAdapter.setViewSelectedDayByCal(position, mCurSelectedCal);
                 setDay = true;
                 positionToSet = position;
-                mViewPage.setCurrentItem(position);
+                mViewPager.setCurrentItem(position);
             }
             setViewPagerHeight(mWeekAdapter.getHeight());
-            if (!mViewPage.isShown()) {
+            if (!mViewPager.isShown()) {
                 mMoveLayout.scroll(mCalendarHeader.getHeight(),
-                    mMonthAdapter.getHeight(mMonthPosition) + mCalendarHeader.getHeight() * 2);
+                        mMonthAdapter.getHeight(mMonthPosition) + mCalendarHeader.getHeight() * 2);
                 new Handler().postDelayed(runnable, 200);
             }
         } else {
@@ -398,17 +369,17 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
             }
             //设置viewPager adapter
             mDataListener = mMonthAdapter;
-            mViewPage.setAdapter(mMonthAdapter);
+            mViewPager.setAdapter(mMonthAdapter);
             int position = getCalMonthPosition(mCurSelectedCal);
             if (position != -1) {
                 mMonthAdapter.setViewSelectedDayByCal(position, mCurSelectedCal);
                 setDay = true;
                 positionToSet = position;
-                mViewPage.setCurrentItem(position);
+                mViewPager.setCurrentItem(position);
             }
             if (mMoveLayout.getBaseTop() != 0) {
                 mMoveLayout.scroll(mCalendarHeader.getHeight(), mWeekAdapter.getHeight()
-                    + mCalendarHeader.getHeight() * 2);
+                        + mCalendarHeader.getHeight() * 2);
                 new Handler().postDelayed(runnable, 200);
             }
         }
@@ -452,7 +423,7 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
             mCurrentPosition = position;
             if (mCurrentView == VIEW_MONTH) { //月视图
                 setViewPagerHeight(mMonthAdapter.getHeight(position));
-                mViewPage.invalidate();
+                mViewPager.invalidate();
                 loadMonthSchedule(mMonthList.get(mCurrentPosition));
                 if (!setDay) {
                     mMonthAdapter.setViewSelectedDayOne(mCurrentPosition);
@@ -560,5 +531,19 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
             mCurrentPosition++;
         }
         mMonthAdapter.setViewSelectedDayByCal(mCurrentPosition, calendar);
+    }
+
+    /**
+     * 获取当前选中时间
+     */
+    public Calendar getCurrentSelectedCal() {
+        return mCurSelectedCal;
+    }
+
+    /**
+     * 数据加载完成回调接口
+     */
+    public interface OnDataChangedListener {
+        void onDataChanged(List<ScheduleVo> scheduleList, int position);
     }
 }
