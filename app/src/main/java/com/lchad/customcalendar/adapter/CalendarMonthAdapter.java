@@ -64,7 +64,7 @@ public class CalendarMonthAdapter extends RecyclingPagerAdapter implements Calen
         isBackToOne = true;
         positionToSet = itemPosition;
         if (viewMap.containsKey(itemPosition)) {
-            viewMap.get(itemPosition).setToDayOne();
+            viewMap.get(itemPosition).SelectDayOne();
         }
     }
 
@@ -90,7 +90,7 @@ public class CalendarMonthAdapter extends RecyclingPagerAdapter implements Calen
         view.setCal(cal);
         view.clearData();
         if (isBackToOne && positionToSet == position) {
-            view.setToDayOne();
+            view.SelectDayOne();
             isBackToOne = false;
         }
         if (calToSet != null && positionToSet == position) {

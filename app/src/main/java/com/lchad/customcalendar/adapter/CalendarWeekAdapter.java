@@ -51,7 +51,7 @@ public class CalendarWeekAdapter extends RecyclingPagerAdapter implements Calend
         isBackToOne = true;
         positionToSet = position;
         if (viewMap.containsKey(position)) {
-            viewMap.get(position).setToDayOne();
+            viewMap.get(position).SelectDayOne();
         }
     }
 
@@ -87,7 +87,7 @@ public class CalendarWeekAdapter extends RecyclingPagerAdapter implements Calend
         isSet = false;
         if (isBackToOne && positionToSet == position) {
             isBackToOne = false;
-            view.setToDayOne();
+            view.SelectDayOne();
             isSet = true;
         }
         if (dataToLoad != null && position == positionToSet) {

@@ -56,8 +56,9 @@ public class CalendarTimeView extends View {
     private Paint mBgPaint;
 
     private int[] bgColor = {
-        getResources().getColor(R.color.schedule_time_mor), getResources().getColor(R.color.schedule_time_aft),
-        getResources().getColor(R.color.schedule_time_eve)
+            getResources().getColor(R.color.schedule_time_mor),
+            getResources().getColor(R.color.schedule_time_aft),
+            getResources().getColor(R.color.schedule_time_eve)
     };
 
     public CalendarTimeView(Context context) {
@@ -72,8 +73,7 @@ public class CalendarTimeView extends View {
         TypedArray ta = mContext.obtainStyledAttributes(attrs, R.styleable.CalendarTimeView);
         mStartX = ta.getDimension(R.styleable.CalendarTimeView_startX, 0f);
         mStartY = ta.getDimension(R.styleable.CalendarTimeView_startY, getResources().getDimension(R.dimen.calendar_time_margin));
-        mChildHeight =
-            ta.getDimension(R.styleable.CalendarTimeView_view_height, getResources().getDimension(R.dimen.calendar_time_height));
+        mChildHeight = ta.getDimension(R.styleable.CalendarTimeView_view_height, getResources().getDimension(R.dimen.calendar_time_height));
         ta.recycle();
         init();
     }
@@ -110,10 +110,13 @@ public class CalendarTimeView extends View {
         String str[] = getContext().getResources().getStringArray(R.array.full_day);
 
         for (int i = 0; i < str.length; i++) {
-
             mBgPaint.setColor(bgColor[i]);
-            canvas.drawRect(mStartX, mStartY + i * (mChildHeight + mSpacing), mStartX + mChildWidth,
-                mStartY + mChildHeight * (i + 1), mBgPaint);
+            canvas.drawRect(
+                    mStartX,
+                    mStartY + i * (mChildHeight + mSpacing),
+                    mStartX + mChildWidth,
+                    mStartY + mChildHeight * (i + 1),
+                    mBgPaint);
 
             canvas.drawText(str[i].substring(0, 1), offsetX, offsetY + mChildHeight * i, mFontPaint);
             canvas.drawText(str[i].substring(1, 2), offsetX, offsetY + mFontSize + mChildHeight * i, mFontPaint);

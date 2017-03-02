@@ -66,9 +66,9 @@ public class CalendarWeekView extends CalendarBaseView {
     /**
      * 线画笔
      */
-    private Paint mHoriLinePaint;
+    private Paint mHorizontalLinePaint;
 
-    private Paint mVerLinePaint;
+    private Paint mVerticalLinePaint;
 
     private Paint rectPaint;
 
@@ -125,18 +125,18 @@ public class CalendarWeekView extends CalendarBaseView {
         itemColor = getResources().getColor(R.color.circle_color);
         mMarginRight = getResources().getDimension(R.dimen.calendar_dp5);
         mItemCircleRadius = getResources().getDimension(R.dimen.calendar_item_circle_radius);
-        mHoriLinePaint = new Paint(mCirclePaint);
-        mHoriLinePaint.setColor(getResources().getColor(R.color.line_color));
-        mHoriLinePaint.setStyle(Paint.Style.STROKE);
-        mHoriLinePaint.setStrokeWidth(1);
+        mHorizontalLinePaint = new Paint(mCirclePaint);
+        mHorizontalLinePaint.setColor(getResources().getColor(R.color.line_color));
+        mHorizontalLinePaint.setStyle(Paint.Style.STROKE);
+        mHorizontalLinePaint.setStrokeWidth(1);
 
-        mVerLinePaint = new Paint(mCirclePaint);
-        mVerLinePaint.setColor(getResources().getColor(R.color.stroke_color));
-        mVerLinePaint.setStyle(Paint.Style.STROKE);
-        mVerLinePaint.setStrokeWidth(1);
-        mVerLinePaint.setAlpha(99);
+        mVerticalLinePaint = new Paint(mCirclePaint);
+        mVerticalLinePaint.setColor(getResources().getColor(R.color.stroke_color));
+        mVerticalLinePaint.setStyle(Paint.Style.STROKE);
+        mVerticalLinePaint.setStrokeWidth(1);
+        mVerticalLinePaint.setAlpha(99);
 
-        rectPaint = new Paint(mHoriLinePaint);
+        rectPaint = new Paint(mHorizontalLinePaint);
         rectPaint.setColor(getResources().getColor(R.color.rect_paint_color));
         rectPaint.setStyle(Paint.Style.FILL);
         mItemTextPaint = new Paint(mFontPaint);
@@ -202,7 +202,7 @@ public class CalendarWeekView extends CalendarBaseView {
      * 设置选中为第一天
      */
     @Override
-    public void setToDayOne() {
+    public void SelectDayOne() {
         mCurrentSelected = 0;
         Calendar calendar = Calendar.getInstance();
         calendar.set(mCal.year, mCal.month, mCal.dates.get(0));
@@ -261,15 +261,18 @@ public class CalendarWeekView extends CalendarBaseView {
         mItemCurrentSelected = 0;
     }
 
+    /**
+     * 绘制周视图的 横线 和 竖线
+     */
     private void drawCalLine() {
         mDateHeight = getResources().getDimension(R.dimen.calendar_week_date_height);
         mItemHeight = getResources().getDimension(R.dimen.calendar_week_item_height);
         for (int i = 0; i <= ROWS; i++) {
-            mCanvas.drawLine(0, mDateHeight + mItemHeight * i, getWidth(), mDateHeight + mItemHeight * i, mHoriLinePaint);
+            mCanvas.drawLine(0, mDateHeight + mItemHeight * i, getWidth(), mDateHeight + mItemHeight * i, mHorizontalLinePaint);
         }
         for (int i = 0; i <= 7; i++) {
             mCanvas.drawLine((getWidth() / 7f) * i, mDateHeight, (getWidth() / 7f) * i, mDateHeight + mItemHeight * 3,
-                mVerLinePaint);
+                    mVerticalLinePaint);
         }
     }
 
@@ -330,7 +333,7 @@ public class CalendarWeekView extends CalendarBaseView {
         int column = position % 7;
         float centerX = mCellWidth / 2 + mCellWidth * column - mItemCircleRadius / 2;
         float centerY = mMarginTop + mDateHeight + mItemHeight * (row - 1) + mItemHeight / 4 - mTextHeight / 2;
-        mCanvas.drawCircle(centerX, centerY, mItemCircleRadius, mHoriLinePaint);
+        mCanvas.drawCircle(centerX, centerY, mItemCircleRadius, mHorizontalLinePaint);
 
         mCanvas.drawRect(column * ((getWidth() - 6) / 7) + column + 1, (row - 1) * mItemHeight + mDateHeight + 1,
             (column + 1) * ((getWidth() - 6) / 7) + column + 1, row * mItemHeight + mDateHeight, rectPaint);
@@ -358,7 +361,9 @@ public class CalendarWeekView extends CalendarBaseView {
         //更新数据
         for (int i = 0; i < scheduleList.size(); i++) {
             cal.setTimeInMillis(scheduleList.get(i).scheduleTime);
-            if (!mCal.dates.contains(cal.get(Calendar.DAY_OF_MONTH))) continue;
+            if (!mCal.dates.contains(cal.get(Calendar.DAY_OF_MONTH))) {
+                continue;
+            }
             day = mCal.dates.indexOf(cal.get(Calendar.DAY_OF_MONTH));
             row = getItemRow(cal);
             if (typeMap.containsKey(day)) {

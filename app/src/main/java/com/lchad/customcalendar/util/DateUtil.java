@@ -38,9 +38,13 @@ public class DateUtil {
         return time >= dayTime[0] && time <= dayTime[1];
     }
 
-    public static boolean isValidTime(int year, int month, int day, long startTime, long endTime) {
-        Calendar calendar = Calendar.getInstance(Locale.getDefault());
-        calendar.set(year, month, day);
+//    public static boolean isValidTime(int year, int month, int day, long startTime, long endTime) {
+//        Calendar calendar = Calendar.getInstance(Locale.getDefault());
+//        calendar.set(year, month, day);
+//        return calendar.getTimeInMillis() > startTime && calendar.getTimeInMillis() < endTime;
+//    }
+
+    public static boolean isValidTime(Calendar calendar, long startTime, long endTime) {
         return calendar.getTimeInMillis() > startTime && calendar.getTimeInMillis() < endTime;
     }
 }

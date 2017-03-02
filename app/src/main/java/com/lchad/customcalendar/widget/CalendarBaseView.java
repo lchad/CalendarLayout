@@ -147,7 +147,7 @@ public abstract class CalendarBaseView extends View {
     /**
      * 设置选中第一天
      */
-    protected abstract void setToDayOne();
+    protected abstract void SelectDayOne();
 
     /**
      * 画整个日历

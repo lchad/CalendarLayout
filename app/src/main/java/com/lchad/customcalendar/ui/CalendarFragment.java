@@ -216,9 +216,7 @@ public class CalendarFragment extends Fragment implements CalendarBaseView.OnCal
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         @SuppressLint("InflateParams")
         View view = inflater.inflate(R.layout.calendar, null);
         ButterKnife.bind(this, view);
